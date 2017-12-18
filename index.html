@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	 <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container list-product">
+		<div class="row product ">
+			<div class="col-md-6 title-product">Máy Giặt Cửa Trên Midea MAS-7201 </div>
+			
+			<div class="col-md-2">
+				<div class="row">
+					<span class="btn btn-block minus btn-danger col-md-4">-</span>
+					<input type="text" class="col-md-4 quantity" value="2">
+					<span class="btn btn-block btn-danger plus col-md-4">+</span>
+				</div>
+			</div>
+			<div class="col-md-4 text-right price"><span>1.000.000</span>VND</div>
+
+		</div>
+		<div class="row product ">
+			<div class="col-md-6 title-product">Máy Giặt Cửa Sau  </div>
+			
+			<div class="col-md-2">
+				<div class="row">
+					<span class="btn btn-block minus btn-danger col-md-4">-</span>
+					<input type="text" class="col-md-4 quantity" value="3">
+					<span class="btn btn-block btn-danger plus col-md-4">+</span>
+				</div>
+			</div>
+			<div class="col-md-4  text-right price"><span>3.189.000</span>VND</div>
+
+		</div>
+		<div class="row product ">
+			<div class="col-md-6 title-product">Máy giặt cửa trước Electrolux EWF80743 7Kg  </div>
+			
+			<div class="col-md-2">
+				<div class="row">
+					<span class="btn btn-block minus btn-danger col-md-4">-</span>
+					<input type="text" class="col-md-4 quantity" value="1">
+					<span class="btn btn-block btn-danger plus col-md-4">+</span>
+				</div>
+			</div>
+			<div class="col-md-4  text-right price"><span>2.189.000</span>VND</div>
+
+		</div>	
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				Tổng cộng
+			</div>
+			<div class="col-md-6  text-right">
+				<span class="total"></span>VND
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+    <script src="js/jquery.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+    	function total(){
+    		var price = [];
+	    	var quantity = [];
+	    	var total = 0;
+	    	$.each($('.product'), function(i){
+	    		price[i] = $('.price span').eq(i).text().replace(/\./g, '');
+	    		price[i] = Number(price[i]);
+	    		quantity[i] = Number($('.quantity').eq(i).val());
+	    		total += price[i] * quantity[i];
+	    	});
+
+	    	total = formatMoney(String(total));
+	    	return total;
+    	}
+    	function formatMoney(str){
+    		len = str.length;
+    		if ((len + 1) % 3 == 0){
+    			str = '0'+ str;
+    		}else if((len + 2) % 3 == 0){
+    			str = '00' + str;
+    		}
+    		var arr = [];
+    		var k = 0 ;
+    		for (var i = 0; i < str.length  ; i = i + 3){
+    			arr[k] = str.substr(i, 3) ;
+    			k++;
+    		}
+    		arr[0] = Number(arr[0]);
+    		str = arr.join('.');
+    		return str;
+    	}
+    	$('.minus').click(function(){
+    		var quantity
+    		quantity = $(this).closest('.row').children('.quantity').val();
+    		if(quantity > 1){
+    			quantity--;		
+    		}
+    		$(this).closest('.row').children('.quantity').val(quantity);
+    		$('.total').text(total());
+    	});
+    	$('.plus').click(function(){
+    		var quantity;
+    		quantity = $(this).closest('.row').children('.quantity').val();
+    		quantity++    ;		
+    		$(this).closest('.row').children('.quantity').val(quantity);
+    		$('.total').text(total());
+    	 });
+    	$(document).ready(function(){
+    		$('.total').text(total());
+    	});  	
+    </script>
+</body>
+</html>
+

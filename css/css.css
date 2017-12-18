@@ -1,0 +1,47 @@
+body{
+	position: relative;
+}
+a{
+	padding: 0 !important;
+	text-decoration: none !important;
+	border-bottom: solid 3px #FF6600;
+	display: block;
+}
+a.hover:hover{
+	border-bottom: solid 3px lightblue;
+}
+#container {
+	width: 100%;
+    padding: 5px 48px 1px;
+    background: #790000;
+    color: white;
+    position: relative;
+    z-index: 5;
+}
+
+div.top {
+    font-size: 14px;
+}
+
+div.image_top {
+	font-size: 16px;
+    font-weight: 400;
+    display: inline;
+}
+
+div.menu{
+	background: #FF6600;
+	position: fixed;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+div.menu_tag{
+	display: flex;
+	justify-content: flex-end;
+}
+div.menu_tag a li.tag{
+	display: block;
+	padding: 15px 10px 12px;
+	margin: auto 0;
+}
